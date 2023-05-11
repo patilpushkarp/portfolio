@@ -1,28 +1,58 @@
 <template>
-    <nav class="navbar navbar-dark bg-dark">
-        <div class="container">
-            <a class="navbar-brand" href="#">
-                <img src="../../assets/logo.png" alt="Logo" width="50" height="50">
-            </a>
-            <button class="navbar-toggler" type="button" @click="toggleMenu">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" :class="{ 'show': isMenuOpen }">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Contact</a>
-                    </li>
-                </ul>
+    <div class="navigation">
+        <nav class="navbar">
+            <div class="container">
+                <router-link class="navbar-brand" to="/">
+                    <img src="../../assets/logo.png" alt="Logo" width="50" height="50">
+                </router-link>
+
+                <button class="navbar-toggler" type="button" @click="toggleMenu">
+                    <span class="navbar-menu"><font-awesome-icon :icon="['fas', 'bars']" /></span>
+                </button>
+
+                <div class="collapse navbar-collapse" :class="{ 'show': isMenuOpen }">
+
+                    <button class="navbar-toggler navbar-close" type="button" @click="toggleMenu">
+                        <font-awesome-icon :icon="['fas', 'xmark']"></font-awesome-icon>
+                    </button>
+
+                    <div class="nav-content">
+                        <h5>Know More</h5>
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <h2><router-link class="nav-link" to="/about">About me</router-link></h2>
+                            </li>
+                            <li class="nav-item">
+                                <h2><a class="nav-link">Projects</a></h2>
+                            </li>
+                            <li class="nav-item">
+                                <h2><a class="nav-link">Blogs</a></h2>
+                            </li>
+                            <li class="nav-item">
+                                <h2><a class="nav-link">Connect with me</a></h2>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
             </div>
-        </div>
-    </nav>
+        </nav>
+    </div>
 </template>
   
 <script>
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+
+library.add(fas);
+
 export default {
+
+    components: {
+    FontAwesomeIcon,
+},
+
     data() {
         return {
             isMenuOpen: false
@@ -37,19 +67,77 @@ export default {
 </script>
   
 <style scoped>
+.navbar {
+    margin-bottom: 0px;
+}
+
+.navbar-toggler {
+    border-color: black;
+    border-width: 0.2rem;
+    background-color: white;
+}
+
+.navbar-menu {
+    color: black;
+    font-size: 1.5rem;
+}
+
 .navbar-nav {
     flex-direction: column;
-    height: 100%;
 }
 
 .nav-link {
-    padding: 0.5rem 1rem;
+    padding: 2.5rem 1rem;
+    color: white;
 }
 
-/* .collapse{
-    position: fixed;
-    background-color: black;
-} */
+.navbar {
+    width: 100vw;
+    position: relative;
+}
 
+.collapse.navbar-collapse.show {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 100;
+    background-color: black;
+}
+
+.container {
+    height: 100%;
+}
+
+.navbar-close {
+    position: fixed;
+    top: 10%;
+    right: 10%;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    color: #ffffff;
+    font-size: 3rem;
+    width: 5%;
+}
+
+.nav-content {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.navigation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: transparent;
+    z-index: 9999;
+}
 </style>
   
