@@ -411,11 +411,8 @@ export default {
 <style scoped>
 .about {
   background-color: black;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
   overflow-y: auto;
+  overflow-x: hidden;
   height: 100vh;
   color: white;
 }

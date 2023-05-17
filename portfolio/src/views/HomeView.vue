@@ -7,16 +7,18 @@
         </div>
         <div class="d-flex nav-buttons">
           <div class="nav-button-wrap">
-            <button type="button" class="btn nav-button btn-lg">About</button>
+            <router-link to="/about"><button type="button"
+                class="btn nav-button btn-lg">About</button></router-link>
           </div>
           <div class="nav-button-wrap">
-            <button type="button" class="btn nav-button btn-lg">Blogs</button>
+            <router-link to="/"><button type="button"
+                class="btn nav-button btn-lg">Blogs</button></router-link>
           </div>
           <div class="nav-button-wrap">
-            <button type="button" class="btn nav-button btn-lg">Projects</button>
+            <router-link to="/"><button type="button" class="btn nav-button btn-lg">Projects</button></router-link>
           </div>
           <div class="nav-button-wrap">
-            <button type="button" class="btn nav-button btn-lg">Connect</button>
+            <router-link to="/connect"><button type="button" class="btn nav-button btn-lg">Connect</button></router-link>
           </div>
         </div>
       </div>
@@ -32,7 +34,7 @@
   height: 100vh;
 }
 
-.jumbotron{
+.jumbotron {
   height: 100%;
 }
 
@@ -54,18 +56,24 @@ h1 {
   font-size: 8rem;
 }
 
-.nav-buttons{
+.nav-buttons {
   height: 30%;
   width: 100%;
   padding: 10% 5%;
 }
 
-.nav-button-wrap{
+.nav-button-wrap {
   flex: 1;
   align-items: center;
+  color: orange;
 }
 
-.nav-button{
+.nav-button-wrap:hover {
+  background-color: orange;
+  color: black;
+}
+
+.nav-button {
   border: 0;
   border-radius: 25px;
   color: orange;
@@ -73,6 +81,12 @@ h1 {
 
 .nav-button:hover {
   background-color: orange;
-  box-shadow: 0 12px 16px 0 rgba(220, 95, 6, 0.24),0 17px 50px 0 rgba(220, 95, 6,0.19);
+  color: black;
+  box-shadow: 0 12px 16px 0 rgba(220, 95, 6, 0.24), 0 17px 50px 0 rgba(220, 95, 6, 0.19);
 }
+
+/* .router-button {
+  text-decoration: none;
+  color: orange;
+} */
 </style>

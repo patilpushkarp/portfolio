@@ -30,7 +30,7 @@
                                 <h2><a class="nav-link">Blogs</a></h2>
                             </li>
                             <li class="nav-item">
-                                <h2><a class="nav-link">Connect with me</a></h2>
+                                <h2><router-link class="nav-link" to="/connect" @click="toggleMenu">Connect with me</router-link></h2>
                             </li>
                         </ul>
                     </div>
@@ -68,6 +68,11 @@ export default {
 </script>
   
 <style scoped>
+
+.navigation{
+    max-width: 100%;
+}
+
 .navbar {
     margin-bottom: 0px;
 }
