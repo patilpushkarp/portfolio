@@ -20,7 +20,8 @@
                         <h5>Know More</h5>
                         <ul class="navbar-nav ml-auto">
                             <li class="nav-item">
-                                <h2><router-link class="nav-link" to="/about">About me</router-link></h2>
+                                <h2><router-link class="nav-link" to="/about" @click="toggleMenu">About me</router-link>
+                                </h2>
                             </li>
                             <li class="nav-item">
                                 <h2><a class="nav-link">Projects</a></h2>
@@ -50,8 +51,8 @@ library.add(fas);
 export default {
 
     components: {
-    FontAwesomeIcon,
-},
+        FontAwesomeIcon,
+    },
 
     data() {
         return {
@@ -72,13 +73,13 @@ export default {
 }
 
 .navbar-toggler {
-    border-color: black;
-    border-width: 0.2rem;
-    background-color: white;
+    border-color: white;
+    border-width: 0.05rem;
+    background-color: black;
 }
 
 .navbar-menu {
-    color: black;
+    color: white;
     font-size: 1.5rem;
 }
 

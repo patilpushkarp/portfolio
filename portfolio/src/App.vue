@@ -16,10 +16,14 @@ export default {
 </script>
 
 <style lang="scss">
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Snippet&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Snippet&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Playfair+Display+SC:ital,wght@1,700&family=Snippet&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
+@font-face {
+    font-family: "Roxborough";
+    src: url('~@/assets/fonts/Roxborough CF.ttf');
+}
 
 html {
   height: 100vh;
@@ -40,22 +44,15 @@ body {
 }
 
 h1 {
-  font-family: 'Cinzel', serif;
+  font-family: 'Roxborough', serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 h2 {
-  font-family: 'Snippet', sans-serif;
+  font-family: 'Comfortaa', cursive;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-h5 {
-  font-family: 'Playfair Display SC', serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: grey;
 }
 
 </style>
