@@ -24,13 +24,15 @@
                                 </h2>
                             </li>
                             <li class="nav-item">
-                                <h2><a class="nav-link">Projects</a></h2>
+                                <h2><router-link class="nav-link" to="/projects" @click="toggleMenu">Projects</router-link>
+                                </h2>
                             </li>
                             <li class="nav-item">
-                                <h2><a class="nav-link">Blogs</a></h2>
+                                <h2><router-link class="nav-link" to="/blogs" @click="toggleMenu">Blogs</router-link></h2>
                             </li>
                             <li class="nav-item">
-                                <h2><router-link class="nav-link" to="/connect" @click="toggleMenu">Connect with me</router-link></h2>
+                                <h2><router-link class="nav-link" to="/connect" @click="toggleMenu">Connect with
+                                        me</router-link></h2>
                             </li>
                         </ul>
                     </div>
@@ -68,8 +70,7 @@ export default {
 </script>
   
 <style scoped>
-
-.navigation{
+.navigation {
     max-width: 100%;
 }
 

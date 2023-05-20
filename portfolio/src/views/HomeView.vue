@@ -11,11 +11,11 @@
                 class="btn nav-button btn-lg">About</button></router-link>
           </div>
           <div class="nav-button-wrap">
-            <router-link to="/"><button type="button"
+            <router-link to="/blogs"><button type="button"
                 class="btn nav-button btn-lg">Blogs</button></router-link>
           </div>
           <div class="nav-button-wrap">
-            <router-link to="/"><button type="button" class="btn nav-button btn-lg">Projects</button></router-link>
+            <router-link to="/projects"><button type="button" class="btn nav-button btn-lg">Projects</button></router-link>
           </div>
           <div class="nav-button-wrap">
             <router-link to="/connect"><button type="button" class="btn nav-button btn-lg">Connect</button></router-link>
