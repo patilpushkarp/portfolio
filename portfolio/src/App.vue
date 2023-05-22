@@ -21,8 +21,8 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
 
 @font-face {
-    font-family: "Roxborough";
-    src: url('~@/assets/fonts/Roxborough CF.ttf');
+  font-family: "Roxborough";
+  src: url('~@/assets/fonts/Roxborough CF.ttf');
 }
 
 html {
@@ -54,5 +54,4 @@ h2 {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
 </style>

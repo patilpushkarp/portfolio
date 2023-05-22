@@ -2,29 +2,37 @@
   <div class="home">
     <div class="jumbotron">
       <div class="name">
-        <div class="main-name">
+        <div class="main-name fade-in">
           <h1>Pushkar Patil</h1>
         </div>
         <div class="d-flex nav-buttons">
-          <div class="nav-button-wrap">
-            <router-link to="/about"><button type="button"
-                class="btn nav-button btn-lg">About</button></router-link>
-          </div>
-          <div class="nav-button-wrap">
-            <router-link to="/blogs"><button type="button"
-                class="btn nav-button btn-lg">Blogs</button></router-link>
-          </div>
-          <div class="nav-button-wrap">
-            <router-link to="/projects"><button type="button" class="btn nav-button btn-lg">Projects</button></router-link>
-          </div>
-          <div class="nav-button-wrap">
-            <router-link to="/connect"><button type="button" class="btn nav-button btn-lg">Connect</button></router-link>
+          <div v-for="(button, index) in navButtons" :key="index" class="nav-button-wrap pop-up">
+            <router-link :to="button.route">
+              <button type="button" class="btn nav-button btn-lg">
+                {{ button.label }}
+              </button>
+            </router-link>
           </div>
         </div>
       </div>
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      navButtons: [
+        { label: 'About', route: '/about' },
+        { label: 'Blogs', route: '/blogs' },
+        { label: 'Projects', route: '/projects' },
+        { label: 'Connect', route: '/connect' },
+      ],
+    };
+  },
+};
+</script>
 
 <style scoped>
 .home {
@@ -60,6 +68,8 @@ h1 {
   height: 30%;
   width: 100%;
   padding: 10% 5%;
+  display: flex;
+  justify-content: center;
 }
 
 .nav-button-wrap {
@@ -85,8 +95,54 @@ h1 {
   box-shadow: 0 12px 16px 0 rgba(220, 95, 6, 0.24), 0 17px 50px 0 rgba(220, 95, 6, 0.19);
 }
 
-/* .router-button {
-  text-decoration: none;
+.btn {
   color: orange;
-} */
+  background-color: transparent;
+  border-radius: 30px;
+  padding: 10px 20px;
+  transition: all 0.3s;
+}
+
+.btn:hover {
+  background-color: orange;
+  color: black;
+}
+
+ /* Animations*/
+
+.fade-in {
+  opacity: 0;
+  animation: fade-in-animation 1s forwards;
+}
+
+@keyframes fade-in-animation {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.pop-up {
+  opacity: 0;
+  animation: pop-up-animation 0.5s ease-in-out forwards;
+}
+
+@keyframes pop-up-animation {
+  0% {
+    transform: translateY(50%);
+    opacity: 0;
+  }
+  50% {
+    transform: translateY(-10%);
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
 </style>
