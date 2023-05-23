@@ -3,15 +3,24 @@
 
     <!-- Greetings -->
     <div class="greeting">
-      <h1 style="color: orange;">Namaskar 🙏🏼</h1>
+      <span>
+        <transition name="fade" appear>
+          <h1 style="color: orange;">Namaskar</h1>
+        </transition>
+        <transition name="pranam" appear>
+          <h1>🙏🏼</h1>
+        </transition>
+      </span>
     </div>
 
     <!-- Introductory line -->
     <div class="jumbotron">
-      <div class="container intro-line">
-        <h2>I am a tech enthusiast and business graduate, currently exploring and experimenting with
-          diverse career avenues.</h2>
-      </div>
+      <transition name="fade">
+        <div class="container intro-line">
+          <h2>I am a tech enthusiast and business graduate, currently exploring and experimenting with
+            diverse career avenues.</h2>
+        </div>
+      </transition>
     </div>
 
     <!-- Introductio -->
@@ -409,6 +418,12 @@ export default {
 </script>
 
 <style scoped>
+
+span{
+  display: flex;
+  flex-direction: row;
+}
+
 .about {
   background-color: black;
   overflow-y: auto;
@@ -427,6 +442,7 @@ export default {
 h1 {
   font-size: 7rem;
   color: cyan;
+  padding: 0 5%;
 }
 
 .jumbotron {
@@ -547,7 +563,7 @@ h1 {
   padding: 5% 5%;
 }
 
-.connect-button-wrapper{
+.connect-button-wrapper {
   padding: 3%;
 }
 
@@ -564,6 +580,51 @@ h1 {
 .connect-button:hover {
   background-color: black;
   color: white;
-  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),0 17px 50px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
+
+/* Animations */
+
+.fade-in {
+  opacity: 0;
+  animation: fade-in-animation 1s forwards;
+}
+
+.fade-enter-from {
+  opacity: 0;
+}
+
+.fade-enter-active {
+  transition: opacity 2s;
+}
+
+.fade-enter-to {
+  opacity: 1;
+}
+
+.pranam-enter-active{
+  animation: slide-scale 2s ease-out;
+}
+
+@keyframes fade-in-animation {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-scale {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-100%);
+  }
+}
+
 </style>

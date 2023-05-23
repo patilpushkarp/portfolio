@@ -5,6 +5,7 @@ import ConnectView from '../views/ConnectView.vue'
 import BlogView from '../views/BlogView.vue'
 import BlogsViewer from '../views/BlogsViewer.vue'
 import ProjectsViewer from '../views/ProjectsViewer.vue'
+import DemoView from '../views/DemoView.vue'
 
 const routes = [
   {
@@ -36,6 +37,11 @@ const routes = [
     path: '/projects',
     name: 'projects',
     component: ProjectsViewer
+  },
+  {
+    path: '/demo',
+    name: 'demo',
+    component: DemoView
   }
 ]
 
