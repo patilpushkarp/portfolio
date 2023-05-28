@@ -2,29 +2,38 @@
     <div class="projects-viewer">
 
         <div class="projects-page-heading">
-            <h1>Projects 💻</h1>
+            <div ref="projectHead">
+                <transition name="fade" appear>
+                    <h1>Projects 💻</h1>
+                </transition>
+            </div>
         </div>
 
-        <div v-for="project in projectsData" :key="project.id" class="container">
-            <div class="card">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-5">
-                            <div class="project-image-space">
-                                <img :src="getGoogleDriveImageURL(project.projectImage)" class="project-image" alt="Project Image" />
+        <div v-for="project in projectsData" :key="project.id" class="container" :data-section-id="project.id"
+            ref="projects">
+            <transition name="slide">
+                <div class="card" v-if="showSection(project.id)">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-5">
+                                <div class="project-image-space">
+                                    <img :src="getGoogleDriveImageURL(project.projectImage)" class="project-image"
+                                        alt="Project Image" />
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-7">
-                            <div class="project-heading">
-                                <h2><a target="_blank" class="project-link" :href="project.projectURL">{{ project.projectName }}</a></h2>
-                            </div>
-                            <div class="project-summary">
-                                <p>{{ project.projectSummary }}</p>
+                            <div class="col-7">
+                                <div class="project-heading">
+                                    <h2><a target="_blank" class="project-link" :href="project.projectURL">{{
+                                        project.projectName }}</a></h2>
+                                </div>
+                                <div class="project-summary">
+                                    <p>{{ project.projectSummary }}</p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </transition>
         </div>
 
         <FooterBar></FooterBar>
@@ -40,12 +49,14 @@ export default {
     },
     data() {
         return {
-            projectsData: []
+            projectsData: [],
+            observedSections: [],
         };
     },
     async mounted() {
         await this.fetchData();
-
+        this.initializeSections();
+        this.observeIntersections();
     },
     methods: {
         async fetchData() {
@@ -57,9 +68,46 @@ export default {
                 console.error(error);
             }
         },
+
+        initializeSections() {
+            this.projectsData.forEach((project) => {
+                this.observedSections.push({ id: project.id, visible: false });
+            });
+        },
+
+        observeIntersections() {
+            const options = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0,
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    const sectionId = parseInt(entry.target.dataset.sectionId);
+                    const index = this.observedSections.findIndex((item) => item.id === sectionId);
+
+                    if (entry.isIntersecting) {
+                        if (index === -1) {
+                            this.observedSections.push({ id: sectionId, visible: true });
+                        } else {
+                            this.observedSections[index].visible = true;
+                        }
+                    }
+                });
+            }, options);
+
+            this.$refs.projects.forEach((section) => {
+                observer.observe(section);
+            });
+        },
+
+        showSection(sectionId) {
+            const index = this.observedSections.findIndex((item) => item.id === sectionId);
+            return index !== -1 && this.observedSections[index].visible;
+        },
+
         getGoogleDriveImageURL(imageId) {
-            // const folderId = "1O5k910kLy5szvvZGkJNRTEvuuDznPcqA";
-            // return `https://drive.google.com/file/d/${imageId}/view`;
             return `https://drive.google.com/uc?export=view&id=${imageId}`;
         },
     }
@@ -77,7 +125,7 @@ export default {
 
 
 .projects-page-heading {
-    height: 100%;
+    height: 101%;
     justify-content: center;
     align-items: center;
     display: flex;
@@ -126,8 +174,32 @@ h1 {
     width: 80%;
 }
 
-.project-link{
+.project-link {
     text-decoration: none;
     color: mediumvioletred;
+}
+
+/* Animations */
+
+.fade-enter-from {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.fade-enter-active {
+    transition: opacity 4s, transform 1s;
+}
+
+.fade-enter-to {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.slide-enter-active {
+    transition: transform 2s;
+}
+
+.slide-enter-from {
+    transform: translateX(-100%);
 }
 </style>

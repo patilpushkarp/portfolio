@@ -6,9 +6,20 @@
                     <img src="../../assets/logo.png" alt="Logo" width="50" height="50">
                 </router-link>
 
-                <button class="navbar-toggler" type="button" @click="toggleMenu">
-                    <span class="navbar-menu"><font-awesome-icon :icon="['fas', 'bars']" /></span>
-                </button>
+                <div class="row">
+                    <div class="col-6">
+                        <audio ref="audioPlayer" :src="audioFile" loop></audio>
+                        <button class="navbar-toggler" type="button" @click="toggleAudioMute">
+                            <span class="navbar-menu" v-if="!isMuted"><font-awesome-icon :icon="['fas', 'play']" /></span>
+                            <span class="navbar-menu" v-else><font-awesome-icon :icon="['fas', 'pause']" /></span>
+                        </button>
+                    </div>
+                    <div class="col-6">
+                        <button class="navbar-toggler" type="button" @click="toggleMenu">
+                            <span class="navbar-menu"><font-awesome-icon :icon="['fas', 'bars']" /></span>
+                        </button>
+                    </div>
+                </div>
 
                 <div class="collapse navbar-collapse" :class="{ 'show': isMenuOpen }">
 
@@ -44,6 +55,7 @@
 </template>
   
 <script>
+import audioFile from '@/assets/audio/music.mp3'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
@@ -58,14 +70,43 @@ export default {
 
     data() {
         return {
-            isMenuOpen: false
+            isMenuOpen: false,
+            audioFile: audioFile,
+            isFirstClick: true,
+            isMuted: false
         };
     },
+
+    mounted() {
+        const audioPlayer = new Audio(this.audioFile);
+        this.$refs.audioPlayer = audioPlayer;
+        document.addEventListener('click', this.handleClick);
+    },
+
     methods: {
         toggleMenu() {
             this.isMenuOpen = !this.isMenuOpen;
+        },
+
+        toggleAudioMute() {
+            const audioPlayer = this.$refs.audioPlayer;
+            audioPlayer.muted = !audioPlayer.muted;
+            this.isMuted = !this.isMuted;
+        },
+
+        handleClick() {
+            if (this.isFirstClick) {
+                this.isFirstClick = false;
+
+                const audioPlayer = this.$refs.audioPlayer;
+                audioPlayer.play();
+                this.isMuted = !this.isMuted;
+            }
         }
-    }
+    },
+    beforeUnmount() {
+        document.removeEventListener('click', this.handleClick);
+    },
 };
 </script>
   
@@ -79,8 +120,7 @@ export default {
 }
 
 .navbar-toggler {
-    border-color: white;
-    border-width: 0.05rem;
+    border-width: 0;
     background-color: black;
 }
 
