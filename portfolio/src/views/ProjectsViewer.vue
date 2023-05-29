@@ -15,13 +15,13 @@
                 <div class="card" v-if="showSection(project.id)">
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-5">
+                            <div class="col-md-5">
                                 <div class="project-image-space">
                                     <img :src="getGoogleDriveImageURL(project.projectImage)" class="project-image"
                                         alt="Project Image" />
                                 </div>
                             </div>
-                            <div class="col-7">
+                            <div class="col-md-7">
                                 <div class="project-heading">
                                     <h2><a target="_blank" class="project-link" :href="project.projectURL">{{
                                         project.projectName }}</a></h2>
