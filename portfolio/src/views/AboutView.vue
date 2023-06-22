@@ -41,7 +41,7 @@
               <transition name="slide" appear>
                 <p v-show="aboutPara1Section">Driven by a lifelong pursuit of excellence, I have consistently demonstrated
                   a passion for achievement
-                  since my early years. As a distinguished rank holder in school, a championship skater, and a top
+                  since my early years. As a distinguished student in school, a champion skater, and a top
                   performer
                   in competitive exams, I have thrived on challenges and continuously pushed myself to surpass
                   expectations.
@@ -446,18 +446,18 @@
                       <div class="row">
                         <div class="col-6">
                           <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Data Analytics</li>
-                            <li class="list-group-item">Machine Learning</li>
-                            <li class="list-group-item">Web Development</li>
-                            <li class="list-group-item">Product Development</li>
+                            <li class="list-group-item">Python</li>
+                            <li class="list-group-item">SQL</li>
+                            <li class="list-group-item">Javascript</li>
+                            <li class="list-group-item">Amazon Web Services</li>
                           </ul>
                         </div>
                         <div class="col-6">
                           <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Causal Inference</li>
-                            <li class="list-group-item">Natural Language Processing</li>
-                            <li class="list-group-item">Software Development Life Cycle</li>
-                            <li class="list-group-item">Deep Learning</li>
+                            <li class="list-group-item">Docker</li>
+                            <li class="list-group-item">Git</li>
+                            <li class="list-group-item">Kubernetes</li>
+                            <li class="list-group-item">Jenkins</li>
                           </ul>
                         </div>
                       </div>
