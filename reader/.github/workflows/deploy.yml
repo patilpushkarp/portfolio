@@ -1,0 +1,30 @@
+name: Deploy to Google Cloud Run
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Build Docker image
+        run: docker build -t patilpushkarp/fastapi .
+
+      - name: Push Docker image to Google Container Registry
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.GCP_USERNAME }}
+          password: ${{ secrets.GCP_PASSWORD }}
+
+      - name: Deploy to Google Cloud Run
+        uses: google-github-actions/cloud-run-deploy@v1
+        with:
+          project_id: ${{ secrets.GCP_PROJECT_ID }}
+          region: asia-south1
+          service_name: fastapi
+          image: gcr.io/patilpushkarp/fastapi
