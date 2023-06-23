@@ -26,6 +26,7 @@
 </template>
   
 <script>
+import config from '@/config.js';
 import { marked } from "marked";
 import * as Plotly from 'plotly.js-dist';
 
@@ -39,7 +40,8 @@ export default {
         return {
             texts: [],
             textHeading: "",
-            summary: ""
+            summary: "",
+            backendUrl: config[process.env.NODE_ENV].backendUrl,
         };
     },
     async mounted() {
@@ -52,7 +54,7 @@ export default {
     methods: {
         async fetchData() {
             try {
-                const response = await fetch(`http://127.0.0.1:8000/blog/${this.id}`);
+                const response = await fetch(`${this.backendUrl}/blog/${this.id}`);
                 const data = await response.json();
                 this.texts = data;
             } catch (error) {

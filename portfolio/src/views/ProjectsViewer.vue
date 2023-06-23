@@ -41,6 +41,7 @@
 </template>
 
 <script>
+import config from '@/config.js';
 import FooterBar from '@/components/commons/FooterBar.vue';
 
 export default {
@@ -51,6 +52,7 @@ export default {
         return {
             projectsData: [],
             observedSections: [],
+            backendUrl: config[process.env.NODE_ENV].backendUrl,
         };
     },
     async mounted() {
@@ -61,7 +63,7 @@ export default {
     methods: {
         async fetchData() {
             try {
-                const response = await fetch("http://127.0.0.1:8000/projects");
+                const response = await fetch(`${this.backendUrl}/projects`);
                 const data = await response.json();
                 this.projectsData = data;
             } catch (error) {
